@@ -1,0 +1,14 @@
+select type, type_varian, count(type) as jumlah from report_vendor
+join kontrak on report_vendor.id_kontrak=kontrak.id_kontrak
+join varian_kontrak on report_vendor.id_varkontrak=varian_kontrak.id_varkontrak
+where report_vendor.id_vendor='VENDOR0001'
+group by type
+
+
+
+select type, type_varian, count(type) as jumlah from report_vendor
+join kontrak on report_vendor.id_kontrak=kontrak.id_kontrak
+join (select id_varkontrak,type_varian from varian_kontrak group by id_varkontrak) var
+on report_vendor.id_varkontrak=var.id_varkontrak
+where report_vendor.id_vendor='VENDOR0001'
+group by type
